@@ -1,0 +1,13 @@
+{
+  "name": "simple-todo",
+  "version": "1.0.0",
+  "description": "Example todo application with Node.js / Express.js",
+  "author": "Dirk Breuer <mail@breuer.io>",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
