@@ -1,0 +1,23 @@
+{
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "",
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "todo-demo.codelater.de",
+  "scripts": {
+    "postdeploy": "npm run db:migrate"
+  },
+  "stack": "heroku-18"
+}
