@@ -9,7 +9,7 @@ const dbPool = new Pool({
 })
 
 // Read the port from ENV instead of hard coding
-const port = process.env.WEB_PORT
+const port = process.env.PORT || 3000
 
 const app = express()
 // Automatically parse JSON body
