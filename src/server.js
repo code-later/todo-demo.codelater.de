@@ -21,6 +21,7 @@ app.get('/todos', (req, res) => {
 
   dbPool.query('SELECT * FROM todos')
     .then(dbRes => res.json(dbRes.rows))
+    .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
 })
 
 // POST /todos - Create a new todo record, returning ID of newly created record
@@ -39,6 +40,7 @@ app.post('/todos', (req, res) => {
     .then(dbRes => {
       res.status(201).json({ id: dbRes.rows[0].id })
     })
+    .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
 })
 
 // GET /todos/:id - Get a single Todo record from database, return 404 if no record was found for given ID
@@ -55,6 +57,7 @@ app.get('/todos/:id', (req, res) => {
         res.status(404).json({ error: `Todo with ID=${req.params.id} not found.` })
       }
     })
+    .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
 })
 
 // PATCH /todos/:id - Update a single record identified by ID, return 404 if no record was found for given ID
@@ -76,6 +79,7 @@ app.patch('/todos/:id', (req, res) => {
         res.status(404).json({ error: `Todo with ID=${req.params.id} not found.` })
       }
     })
+    .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
