@@ -79,5 +79,22 @@ app.patch('/todos/:id', (req, res) => {
     .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
 })
 
+// DELETE /todos/:id - Removes a single record identified by ID, return 404 if no record was found for given ID
+app.delete('/todos/:id', (req, res) => {
+  console.log(`DELETE /todos/${req.params.id}`)
+
+  const deleteTodo = 'DELETE FROM todos WHERE id = $1 RETURNING *'
+
+  dbPool.query(deleteTodo, [ req.params.id ])
+    .then(dbRes => {
+      if (dbRes.rows[0]) {
+        res.json(dbRes.rows[0])
+      } else {
+        res.status(404).json({ error: `Todo with ID=${req.params.id} not found.` })
+      }
+    })
+    .catch(e => setImmediate(() => { res.status(500).json({ message: e.message }) }))
+})
+
 // Export the app to be used in server.js
 module.exports = app
