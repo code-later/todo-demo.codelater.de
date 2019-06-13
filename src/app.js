@@ -12,6 +12,10 @@ const app = express()
 // Automatically parse JSON body
 app.use(bodyParser.json({type: 'application/json'}))
 
+app.get('/', (req, res) => {
+  res.json({ message: "Go to /todos" })
+})
+
 // GET /todos - List all Todo records in the database
 app.get('/todos', (req, res) => {
   console.log('GET /todos')
