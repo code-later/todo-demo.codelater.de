@@ -14,7 +14,7 @@ services:
       - postgres
     environment:
       PORT: 3000
-      DATABASE_URL: postgres://todoapp:supersecretpassword@postgres/todos
+      DATABASE_URL: postgres://todoapp:supersecretpassword@postgres/todoapp
   postgres:
     image: postgres:11
     volumes:
